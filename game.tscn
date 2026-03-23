@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ci18qhxi553x" path="res://src/ScoreLayer.cs" id="9_mfdv2"]
 [ext_resource type="AudioStream" uid="uid://dqiuo00pju8pi" path="res://assets/music/time_for_adventure.mp3" id="9_vef74"]
 [ext_resource type="Texture2D" uid="uid://cbgj68s5fauv0" path="res://assets/sprites/coin.png" id="10_iotsf"]
+[ext_resource type="Script" uid="uid://ryheffdym2iy" path="res://src/HealthLayer.cs" id="11_iotsf"]
 [ext_resource type="Texture2D" uid="uid://1qmcfxt7e7tu" path="res://assets/sprites/heart.png" id="11_mfdv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
@@ -363,6 +364,7 @@ stretch_mode = 5
 
 [node name="HealthLayer" type="CanvasLayer" parent="." unique_id=498253967]
 unique_name_in_owner = true
+script = ExtResource("11_iotsf")
 
 [node name="Control" type="Control" parent="HealthLayer" unique_id=251467054]
 layout_mode = 3
