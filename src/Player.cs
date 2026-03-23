@@ -10,9 +10,11 @@ public partial class Player : CharacterBody2D
     bool IsDead = false;
     bool TakingDamage = false;
     AnimatedSprite2D PlayerSprite;
+    CollisionShape2D collisionShape;
     Timer timer;
     AudioStreamPlayer JumpSFX;
     AudioStreamPlayer HurtSFX;
+    RayCast2D rayCast2D;
 
     public override void _Ready()
     {
@@ -20,6 +22,8 @@ public partial class Player : CharacterBody2D
         timer = GetNode<Timer>("Timer");
         JumpSFX = GetNode<AudioStreamPlayer>("Jump");
         HurtSFX = GetNode<AudioStreamPlayer>("Hurt");
+        collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+        rayCast2D = GetNode<RayCast2D>("RayCast2D");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -37,6 +41,22 @@ public partial class Player : CharacterBody2D
             {
                 velocity.Y = JumpVelocity;
                 JumpSFX.Play();
+            }
+
+            bool isDuckPressed = Input.IsActionPressed("duck");
+            bool isCeilingAbove = rayCast2D.IsColliding();
+
+            if (isDuckPressed)
+            {
+                SetDucking(true);
+            }
+            else if (isCeilingAbove)
+            {
+                SetDucking(true);
+            }
+            else
+            {
+                SetDucking(false);
             }
 
             // Get the input direction and handle the movement/deceleration.
@@ -106,5 +126,10 @@ public partial class Player : CharacterBody2D
     {
         Engine.TimeScale = 1.0;
         GetTree().ReloadCurrentScene();
+    }
+
+    private void SetDucking(bool shouldDuck)
+    {
+        collisionShape.Disabled = shouldDuck;
     }
 }
