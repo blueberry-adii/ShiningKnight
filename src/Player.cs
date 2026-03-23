@@ -19,6 +19,7 @@ public partial class Player : CharacterBody2D
         PlayerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         timer = GetNode<Timer>("Timer");
         JumpSFX = GetNode<AudioStreamPlayer>("Jump");
+        HurtSFX = GetNode<AudioStreamPlayer>("Hurt");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -57,10 +58,9 @@ public partial class Player : CharacterBody2D
                 PlayerSprite.Play("run");
             else
                 PlayerSprite.Play("idle");
-
-            Velocity = velocity;
         }
 
+        Velocity = velocity;
         MoveAndSlide();
     }
 
@@ -76,15 +76,18 @@ public partial class Player : CharacterBody2D
         if (Health <= 0)
         {
             TakingDamage = false;
+            Die();
         }
         else
         {
-
             PlayerSprite.Play("hit");
             velocity.Y = -150;
+            Velocity = velocity;
             await ToSignal(PlayerSprite, "animation_finished");
             TakingDamage = false;
         }
+
+        GD.Print("Health: " + Health);
     }
 
     public void Die()
