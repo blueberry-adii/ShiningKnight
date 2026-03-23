@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://l6n3clsu7o47"]
 
+[ext_resource type="Script" uid="uid://we2o7wfygslm" path="res://src/Slime.cs" id="1_4l1t8"]
 [ext_resource type="Texture2D" uid="uid://03s3iii7xdo6" path="res://assets/sprites/slime_green.png" id="1_5jc4t"]
 [ext_resource type="PackedScene" uid="uid://c3ujc6jul2cyi" path="res://kill_zone.tscn" id="2_4l1t8"]
 
@@ -76,6 +77,7 @@ animations = [{
 size = Vector2(10, 14)
 
 [node name="Slime" type="Node2D" unique_id=2098467358 groups=["enemy"]]
+script = ExtResource("1_4l1t8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=623741750]
 sprite_frames = SubResource("SpriteFrames_8w6w5")
@@ -85,7 +87,6 @@ frame_progress = 0.43349773
 
 [node name="KillZone" parent="." unique_id=863907590 groups=["enemy"] instance=ExtResource("2_4l1t8")]
 position = Vector2(-4, -3)
-script = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=375511335]
 position = Vector2(4, 8)

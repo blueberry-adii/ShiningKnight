@@ -14,7 +14,6 @@ public partial class Coin : Area2D
 
 	private void _OnBodyEntered(Node2D body)
 	{
-		GD.Print("Coin");
 		scoreLayer.AddPoint();
 		animationPlayer.Play("pickup");
 	}
